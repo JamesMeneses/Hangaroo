@@ -3,7 +3,7 @@ def hangaroo(secretWord):
     from GuessedWord import getGuessedWord
     from AvailableLetters import getAvailableLetters
     lettersGuessed=[" "," "," "," "," "," "," "]
-    print("Welcome to Hangaroo")
+    print("Welcome to Hangaroo\n")
     
     def Answer(user):
         if(user=='m'):
@@ -46,21 +46,27 @@ def hangaroo(secretWord):
     i=0            
     while i<7:
         print("Attempt number {0}/6".format(i))
+        returnstring=getGuessedWord(secretWord, lettersGuessed)
         print("Available letters:")
         usableLetters=getAvailableLetters(lettersGuessed)
         lettersGuessed[i]=input("Try and Guess... \n")
-        user=lettersGuessed[i]
-        lettersGuessed=[element.lower() for element in lettersGuessed];lettersGuessed
-        userinput=lettersGuessed[i]
+        user=lettersGuessed[i].lower()
+        if len(user)!=1:
+            print("Please only type in a single letter\n")
+            continue
+        else:
+            pass
         if not user in usableLetters:
             print("That letter's been used, try again...\n")
             continue
+        else:
+            pass
         Answer(user)
-        returningstring=getGuessedWord(secretWord, lettersGuessed)
         check=isWordGuessed(secretWord, lettersGuessed)
         i+=1
         
     if(check == True):
             print("You guessed the word!")
+            print("The word was 'monster'!")
     else:
             print("Oof! You lose!")
